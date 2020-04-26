@@ -1,3 +1,6 @@
+import matplotlib.pyplot as plt
+import numpy as np
+
 # Defining Function
 def f(x):
     return x ** 3 - 5 * x - 9
@@ -29,3 +32,9 @@ error  = float(input('Tolerable Error: '))
 
 # Starting Newton Raphson Method
 newtonRaphson(x0, error)
+
+x = np.arange(-1,3,0.0000001)
+y = abs(f(x))
+plt.title("Bisection Method on f(x)")
+plt.plot(x,y)
+plt.show()

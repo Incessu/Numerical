@@ -1,3 +1,6 @@
+import matplotlib.pyplot as plt
+import numpy as np
+
 # Defining Function
 def f(x):
     return x ** 3 - 5 * x - 9
@@ -30,3 +33,9 @@ error = float(input('Tolerable Error: '))
 
 # Starting Secant Method
 secant(x0, x1, error)
+
+x = np.arange(x0,x1,0.0000001)
+y = abs(f(x))
+plt.title("Bisection Method on f(x)")
+plt.plot(x,y)
+plt.show()

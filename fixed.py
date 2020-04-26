@@ -1,3 +1,6 @@
+import matplotlib.pyplot as plt
+import numpy as np
+
 ## Defining Function
 def f(x):
     return x ** 3 - 5 * x - 9
@@ -17,8 +20,7 @@ def fixedPointIteration(x0, error):
         x0 = x1
         n = n + 1
 
-    print('\nRequired root is: %0.8f' % x1)
-    print("\nReach the Root in %d" % n)
+    print('\nReach the Root Iteration-%d the root is: %0.8f' % (n,x1))
 
 ## Input Inıtıal Guess and Tolerable Error
 x0 = float(input('Initial Value: '))
@@ -26,3 +28,9 @@ error = float(input('Tolerable Error: '))
 
 # Fixed Point Iteration Method
 fixedPointIteration(x0,error)
+
+x = np.arange(x0,3,0.0000001)
+y = abs(f(x))
+plt.title("Bisection Method on f(x)")
+plt.plot(x,y)
+plt.show()

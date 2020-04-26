@@ -1,3 +1,6 @@
+import matplotlib.pyplot as plt
+import numpy as np
+
 ## Defining Function
 def f(x):
     return x ** 3 - 5 * x - 9
@@ -17,8 +20,7 @@ def bisection(a, b, error):
             a = c
 
         n = n + 1
-    print("\nReached Root is : %0.8f" % c)
-    print("\nReach the Root in %d" % n)
+    print('\nReach the Root Iteration-%d the root is: %0.8f' % (n,c))
 
 
 ## Input [a,b] and Tolerable Error
@@ -33,3 +35,8 @@ if f(a) * f(b) > 0:
     print('Try Again with different Interval Limits [a,b].')
 else:
     bisection(a, b, error)
+x = np.arange(a,b,0.0000001)
+y = abs(f(x))
+plt.title("Bisection Method on f(x)")
+plt.plot(x,y)
+plt.show()
