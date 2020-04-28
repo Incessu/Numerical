@@ -3,10 +3,10 @@ import numpy as np
 
 ## Defining Function
 def f(x):
-    return x ** 3 - 5 * x - 9
+    return x**3 - 5*x - 8
 
 ##Secant Method Algorithm
-def secant(x0, x1, error):
+def secant(x0, x1, error, xson, yson):
     x2 = x0 - (x0-x1) * f(x0) / (f(x0)-f(x1))
     print('\n--- SECANT METHOD ---\n')
     iteration = 1
@@ -17,6 +17,8 @@ def secant(x0, x1, error):
             break
 
         x2 = x0 - (x1 - x0) * f(x0) / (f(x1) - f(x0))
+        xson.append(x2)
+        yson.append(f(x2))
         print('Iteration-%d, x2 = %0.8f and f(x2) = %0.6f' % (iteration, x2, abs(f(x2))))
         x0 = x1
         x1 = x2
@@ -30,11 +32,25 @@ x0 = float(input('Enter Initial Value (x0): '))
 x1 = float(input('Enter Initial Value (x1): '))
 error = float(input('Tolerable Error: '))
 
-## Implementing Secant Method
-secant(x0, x1, error)
+## Graph Elemnt Lists
+xson = []
+yson = []
 
-x = np.arange(x0, x1, 0.0000001)
-y = abs(f(x))
+## Implementing Secant Method
+secant(x0, x1, error, xson, yson)
+
+##Graph of Bisection Method for Visualizing
+x = np.arange(x0, x1, 0.001)
+y = (f(x))
+
 plt.title("Secant Method on f(x)")
-plt.plot(x, y)
+
+plt.plot(x, y, label="f(x)")
+plt.plot(xson, yson , '-o', label="Secant Iterations")
+
+plt.xlabel('x')
+plt.ylabel('y')
+
+plt.grid()
+plt.legend()
 plt.show()
